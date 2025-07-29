@@ -1,0 +1,422 @@
+/* Chat Container (Hidden by default) */
+.chat-container {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    width: 100%;
+    max-width: 800px;
+    height: 80vh;
+    margin: 20px auto;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    background: #ffffff;
+    position: fixed;
+    bottom: -100vh;
+    right: 20px;
+    z-index: 999;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.chat-container.visible {
+    bottom: 90px;
+}
+
+/* Chat Header */
+.chat-header {
+    background: linear-gradient(135deg, #4285f4 0%, #34a853 100%);
+    color: white;
+    padding: 18px;
+    text-align: center;
+    font-size: 1.3rem;
+    font-weight: 600;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    position: relative;
+}
+
+/* Messages Area */
+.chat-messages {
+    flex: 1;
+    padding: 20px;
+    overflow-y: auto;
+    background: #f5f7fa;
+    scroll-behavior: smooth;
+}
+
+/* Message Bubbles */
+.message {
+    max-width: 75%;
+    margin-bottom: 15px;
+    padding: 12px 18px;
+    border-radius: 18px;
+    line-height: 1.5;
+    position: relative;
+    word-wrap: break-word;
+    animation: fadeIn 0.3s ease-out;
+}
+
+.user-message {
+    background: #4285f4;
+    color: white;
+    margin-left: auto;
+    border-bottom-right-radius: 4px;
+    box-shadow: 0 2px 4px rgba(66, 133, 244, 0.3);
+}
+
+.bot-message {
+    background: #e9f0f7;
+    color: #333;
+    margin-right: auto;
+    border-bottom-left-radius: 4px;
+}
+
+/* Input Area */
+.chat-input {
+    display: flex;
+    padding: 15px;
+    background: white;
+    border-top: 1px solid #e0e0e0;
+}
+
+#user-input {
+    flex: 1;
+    padding: 12px 18px;
+    border: 1px solid #ddd;
+    border-radius: 25px;
+    font-size: 1rem;
+    outline: none;
+    transition: all 0.3s;
+}
+
+#user-input:focus {
+    border-color: #4285f4;
+    box-shadow: 0 0 0 2px rgba(66, 133, 244, 0.2);
+}
+
+#send-button {
+    margin-left: 12px;
+    padding: 12px 24px;
+    background: #4285f4;
+    color: white;
+    border: none;
+    border-radius: 25px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+#send-button:hover {
+    background: #3367d6;
+    transform: translateY(-1px);
+}
+
+/* File Upload */
+.file-upload {
+    padding: 12px 15px;
+    background: #f8f9fa;
+    border-top: 1px solid #e0e0e0;
+    display: flex;
+    align-items: center;
+}
+
+#file-input {
+    display: none;
+}
+
+.file-upload-label {
+    padding: 8px 16px;
+    background: #34a853;
+    color: white;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.file-upload-label:hover {
+    background: #2d8e47;
+}
+
+.file-name {
+    margin-left: 12px;
+    font-size: 0.9rem;
+    color: #666;
+}
+
+/* Refresh Button (Inside Chat) */
+.refresh-button {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    z-index: 1000;
+    transition: all 0.3s;
+}
+
+.refresh-button:hover {
+    transform: rotate(180deg);
+    background: #f1f1f1;
+}
+
+.refresh-button.refreshing {
+    animation: spin 0.5s linear;
+}
+
+/* Chat Icon */
+.chat-icon {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    background: #4285f4;
+    border-radius: 50%;
+    width: 56px;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 12px rgba(66, 133, 244, 0.3);
+    cursor: pointer;
+    z-index: 1000;
+    transition: all 0.3s;
+}
+
+.chat-icon:hover {
+    transform: scale(1.1);
+    background: #3367d6;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .chat-container {
+        width: 95%;
+        right: 2.5%;
+        height: 70vh;
+    }
+
+    .chat-container.visible {
+        bottom: 80px;
+    }
+
+    .message {
+        max-width: 85%;
+    }
+}
+/* Add these styles to your existing CSS */
+.voice-button {
+    margin-left: 8px;
+    padding: 12px;
+    background: #f1f3f4;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.voice-button:hover {
+    background: #e0e0e0;
+}
+
+.voice-button.listening {
+    background: #ff4444;
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(255, 68, 68, 0.4); }
+    70% { box-shadow: 0 0 0 10px rgba(255, 68, 68, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(255, 68, 68, 0); }
+}
+
+.message-row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 12px;
+    animation: fadeIn 0.4s ease;
+}
+
+.user-row {
+    justify-content: flex-end;
+}
+
+.bot-row {
+    justify-content: flex-start;
+}
+
+.avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: #f0f0f0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    margin: 0 8px;
+    animation: bounceIn 0.5s ease;
+}
+
+.user-avatar {
+    background-color: #4285f4;
+    color: white;
+}
+
+.bot-avatar {
+    background-color: #34a853;
+    color: white;
+}
+
+@keyframes bounceIn {
+    0% { transform: scale(0); opacity: 0; }
+    60% { transform: scale(1.2); opacity: 1; }
+    100% { transform: scale(1); }
+}
+
+/* File Preview Styles */
+.file-preview-container {
+    margin-top: 10px;
+    width: 100%;
+    padding: 10px;
+    background: #f8f9fa;
+    border-radius: 8px;
+}
+
+.file-preview {
+    position: relative;
+    display: inline-block;
+    max-width: 200px;
+}
+
+.file-preview-image {
+    max-width: 100%;
+    max-height: 150px;
+    border-radius: 8px;
+    border: 1px solid #e0e0e0;
+    background: #fff;
+    padding: 5px;
+}
+
+.cancel-upload-button {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    width: 24px;
+    height: 24px;
+    background: #ff4444;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    font-size: 14px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    transition: all 0.3s;
+}
+
+.cancel-upload-button:hover {
+    background: #cc0000;
+    transform: scale(1.1);
+}
+
+/* Image in chat message */
+.chat-image {
+    max-width: 100%;
+    max-height: 200px;
+    border-radius: 8px;
+    margin-top: 8px;
+    border: 1px solid #e0e0e0;
+}
+
+.file-message {
+    font-size: 0.9rem;
+    color: #666;
+    margin-top: 5px;
+    font-style: italic;
+}
+
+/* File upload label improvements */
+.file-upload-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 16px;
+}
+
+.file-upload-label svg {
+    width: 18px;
+    height: 18px;
+}
+/* Toggle Switch Styles */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 46px;
+  height: 24px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  background-color: #ccc;
+  border-radius: 34px;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  transition: 0.4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 18px;
+  width: 18px;
+  left: 3px;
+  bottom: 3px;
+  background-color: white;
+  border-radius: 50%;
+  transition: 0.4s;
+}
+
+input:checked + .slider {
+  background-color: #34a853;
+}
+
+input:checked + .slider:before {
+  transform: translateX(22px);
+}
+
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
